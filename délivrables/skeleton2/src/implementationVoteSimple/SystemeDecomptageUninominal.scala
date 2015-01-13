@@ -7,12 +7,13 @@ class  SystemeDecomptageUninominal(_nom : String, election : Election) extends S
         
 		type ImplElecteur = Electeur
         type returnList = List[Candidat]
- 
+        
 		//override protected val election : Election = _election
-		private var currentListCandidat : List[Candidat] = List()
+		protected var currentListCandidat : List[Candidat] = List()
         //liste des candidats (non elimines), a chaque tour, associes a leur nombre de vote
 		var listdeslistedeCandidat:List[List[(Candidat,Int)]] = List()
         var tabCandidatVote : List[(Candidat,Int)] = List()
+        protected var nbvotant = 0 ; 
         
         def initElection(){
         	var nb : Int = election.modeScrutin.nbTour
@@ -22,11 +23,7 @@ class  SystemeDecomptageUninominal(_nom : String, election : Election) extends S
             	nb-=1
             }
 		}
-        def initElectionmixte(){
-                election.tourList = List();
-                election.tourList = election.tourList:+(new Tour(election));
-            }
-
+        
         def initCurrentListCandidat(){
             currentListCandidat = election.listCandidat
         }
@@ -157,7 +154,14 @@ class  SystemeDecomptageUninominal(_nom : String, election : Election) extends S
 	  
 	    	return gagnants
 		}
-    
+    def contains(vote : Vote): Boolean  ={
+    		comptabiliser(tourCourant )
+    		for(v <- tabCandidatVote ) {
+    		  if(v._1.id == vote.candidat.id  && v._2>= nbvotant )
+    		    return false 
+    		} 
+    		return true
+    }
     def getGagnants():List[Candidat] = {
         if(terminer){
             return currentListCandidat
