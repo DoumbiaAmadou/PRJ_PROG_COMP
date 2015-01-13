@@ -24,10 +24,8 @@ extends AbstractElecteur(_id,_nom,_prenom){
   
   def voter(systemeElection : SystemeDecomptageMixte, c : (Parti,Candidat)) : Boolean ={
   
-    val univote : Vote = new Vote(this.elecUni,systemeElection.uninominal,c._2);
-    val propovote : VoteProportionnel = new VoteProportionnel(this.elecPro,systemeElection.proportionnel,c._1);      
-    
-    return systemeElection.uninominal.ajouterVote(univote) && systemeElection.proportionnel.ajouterVote(propovote) ;
+    val mixte = new VoteMixte(this,systemeElection,c._2,c._1);     
+    return systemeElection.uninominal.ajouterVote(mixte.voteuni) && systemeElection.proportionnel.ajouterVote(mixte.votepro) ;
     
   }
 

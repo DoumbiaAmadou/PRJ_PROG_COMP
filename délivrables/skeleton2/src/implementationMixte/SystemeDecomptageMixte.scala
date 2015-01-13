@@ -7,13 +7,13 @@ import implementationVoteSimple.SystemeDecomptageUninominal
 import scala.math.BigDecimal.int2bigDecimal
 class SystemeDecomptageMixte(_nom : String,uninomi : SystemeDecomptageUninominal, propor : implementationProportionnel.SystemDeComptageProportionel ) extends SystemGeneralDecomptage(_nom){
 
-  type ImplElection = ElectionProportionnel
-	type returnList = List[(Parti,Int)];
-	
-  val uninominal = uninomi;
+	type ImplElection = ElectionProportionnel
+			type returnList = List[(Parti,Int)];
+
+	val uninominal = uninomi;
 	val proportionnel = propor;
-  override protected val election = null
-	var unigagnant : List[Candidat] = List();
+	override protected val election = null
+			var unigagnant : List[Candidat] = List();
 	var proprgagnant : MutableList[(Parti,BigDecimal,BigDecimal,List[Candidat])] = MutableList();
 	var listResultat : List[(Parti,Int)] = List();
 	var nbrSiege : BigDecimal = proportionnel.numberOfSeat*2;
@@ -23,7 +23,7 @@ class SystemeDecomptageMixte(_nom : String,uninomi : SystemeDecomptageUninominal
 	var i : Int = 0;
 
 	def initElection(){
-		uninominal.initElectionmixte();
+		uninominal.initElection();
 		proportionnel.initElection();
 	}
 
@@ -49,21 +49,22 @@ class SystemeDecomptageMixte(_nom : String,uninomi : SystemeDecomptageUninominal
 	}
 
 	def runTour(){
-		
+
 		uninominal.runTour();
-    unigagnant = uninominal.getGagnants();
+		unigagnant = uninominal.getGagnants();
 		proportionnel.runTour();    
 		proprgagnant = proportionnel.getGagnants();
 		for(candidat <- unigagnant){
 			p = candidat.parti;
-			for(parti <- proprgagnant)
-				if(parti._1.nom == p.nom){
-					i = parti._2.intValue();
-					listResultat= listResultat:+(parti._1,(i+nbrSiege/2).intValue());
-				}
-				else
-					listResultat=listResultat:+(parti._1,parti._2.intValue());
 		}
+		for(parti <- proprgagnant){
+			if(parti._1.nom == p.nom){
+				i = parti._2.intValue();
+				listResultat= listResultat:+(parti._1,(i+nbrSiege/2).intValue());
+			}
+      if(parti._1.nom != p.nom && parti._2.intValue() > 0)
+				listResultat=listResultat:+(parti._1,parti._2.intValue());
+    }
 	}
 	def getGagnantsTour(numeroTour : Int):List[(Parti,Int)] = {
 			return null;

@@ -29,6 +29,9 @@ object ScrutinCST {
 	def paramProportionnel(x : Int) : ModeScrutin = {
 	  return new ModeScrutin(proportionnel,1,List(x),prive)
 	}
+  def paramMixte(): ModeScrutin = {
+    return new ModeScrutin(uninominal,1,List(2,1),prive)
+  }
 	
 	def paramPlurinominale(nbTour : Int , listgagnantTour:List[Int]) : ModeScrutin = 
 	// if(nbTour == listgagnantTour.length /*&& validePlurinominal(list)*/)
