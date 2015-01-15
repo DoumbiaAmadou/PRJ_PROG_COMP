@@ -8,6 +8,7 @@ class Parti(_id : Int, _nom : String)  extends Eligible(_id, _nom){
     var listCandidat : List[Candidat] = List()
 	
 	def addCandidat(candidat : Candidat){
+      	candidat.parti = this
 	    listCandidat = listCandidat :+ candidat
 	}
 	

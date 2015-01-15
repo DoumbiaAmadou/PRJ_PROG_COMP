@@ -20,6 +20,12 @@ abstract class SystemGeneralDecomptage(_nom : String) {
     protected def cloturerCandidature:Unit
     def getCandidats() : List[Eligible] = election.listCandidat
     def ajouterVote(vote : ImplVote):Boolean
+    def ajouterVoteByGUIAbsElecteur(electeur : AbstractElecteur, candidat : List[(Int,Eligible)]):Boolean = {
+	  electeur match{
+	    case electeur : ImplElecteur => ajouterVoteByGUIElecteur(electeur : ImplElecteur, candidat : List[(Int,Eligible)])
+	  }
+	}
+	protected def ajouterVoteByGUIElecteur(electeur : ImplElecteur, candidats : List[(Int,Eligible)]*):Boolean
     protected def comptabiliser(numeroTour : Int):Boolean
     //retourne la liste des candidats a la position pos
     protected def getCandidatAtPos(pos : Int, numeroTour : Int):List[Candidate]

@@ -1,6 +1,6 @@
 package GUI
 
-import GUIComponent._
+import GUIAbstractComponent._
 
 abstract class GUIAbstractGeneratorToolkit {
 	type ImplFrame
@@ -8,8 +8,9 @@ abstract class GUIAbstractGeneratorToolkit {
 	var mainFrame : ImplFrame
 	
 	protected def init(frame : Frame)
-	
 	final def generateFrame(frame : Frame) : ImplFrame = {
+	    init(frame)
 	    return mainFrame
 	}
+		
 }

@@ -6,7 +6,6 @@ import Gvote.Candidat
 
 class SystemeDeComptageSemiProportionel(_nom : String, election : Election)  extends SystemeDecomptageSimple(election, _nom){
 
-	type ImplElecteur = Electeur;
 	type returnList = scala.collection.mutable.MutableList[Candidat];
 
 	var tabCandidatVoteWithoutVote : scala.collection.mutable.MutableList[Candidat] 
@@ -81,9 +80,7 @@ class SystemeDeComptageSemiProportionel(_nom : String, election : Election)  ext
 
 		return listCandidatAtPos;
 	}
-	/*
-	 * A FAIRE
-	 */
+	
 	def runTour(){
 	  //println("tour courant " +tourCourant )
 	//  comptabiliser(tourCourant);

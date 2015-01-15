@@ -4,23 +4,25 @@ import Factory._
 import implementationVoteSimple._
 import Gvote.Parti
 import Gvote.Candidat
-
+import GUI.GUIGenerator
+import GUI.GUIGeneratorSwing
+import Gvote.AbstractElecteur
+import Gvote.SystemGeneralDecomptage
+import GUI.GUI_IHMSwing
 
 object testUninominal {
   
     def main(args: Array[String]): Unit = {
-	   
+
         var  systeme : SystemeDecomptageUninominal = FactoryUninominal.createCoutingSystem
 		println(systeme.nom)
         systeme.initElection
         
-        val parti : Parti = new Parti(0, "PARTI")
-        
-		val candidat1 = new Candidat(1 , "candidat1" ,"candidat1" ,parti)
+		val candidat1 = new Candidat(1 , "CNOM1" ,"CPRENOM1")
 		candidat1.sePresenter(systeme)
-		val candidat2 = new Candidat(2 , "candidat2" ,"candidat2" ,parti)
+		val candidat2 = new Candidat(2 , "CNOM2" ,"CPRENOM2")
 		candidat2.sePresenter(systeme)
-		val candidat3 = new Candidat(3 , "candidat3" ,"candidat3" ,parti)
+		val candidat3 = new Candidat(3 , "CNOM3" ,"CPRENOM3")
 		candidat3.sePresenter(systeme)
 		
 		systeme.cloturerCandidature
@@ -35,13 +37,13 @@ object testUninominal {
 
         println("premier tour")
         
-		elec1.voter(systeme, candidat1)
-		elec2.voter(systeme, candidat2)
-		elec3.voter(systeme, candidat3)
-		elec4.voter(systeme, candidat2)
-		elec5.voter(systeme, candidat1)
-		elec6.voter(systeme, candidat2)
-		elec7.voter(systeme, candidat1)
+        GUI_IHMSwing.runVote(List((elec1,systeme)))
+        GUI_IHMSwing.runVote(List((elec2,systeme)))
+        GUI_IHMSwing.runVote(List((elec3,systeme)))
+        GUI_IHMSwing.runVote(List((elec4,systeme)))
+        GUI_IHMSwing.runVote(List((elec5,systeme)))
+        GUI_IHMSwing.runVote(List((elec6,systeme)))
+        GUI_IHMSwing.runVote(List((elec7,systeme)))
 		
 		systeme.runTour()
 		
@@ -54,13 +56,13 @@ object testUninominal {
 			
 			println("deuxieme tour")
 			
-			elec1.voter(systeme, candidat1)
-			elec2.voter(systeme, candidat2)
-			elec3.voter(systeme, candidat2)
-			elec4.voter(systeme, candidat2)
-			elec5.voter(systeme, candidat1)
-			elec6.voter(systeme, candidat2)
-			elec6.voter(systeme, candidat1)
+		GUI_IHMSwing.runVote(List((elec1,systeme)))
+        GUI_IHMSwing.runVote(List((elec2,systeme)))
+        GUI_IHMSwing.runVote(List((elec3,systeme)))
+        GUI_IHMSwing.runVote(List((elec4,systeme)))
+        GUI_IHMSwing.runVote(List((elec5,systeme)))
+        GUI_IHMSwing.runVote(List((elec6,systeme)))
+        GUI_IHMSwing.runVote(List((elec7,systeme)))
 		
 			systeme.runTour()
 		

@@ -7,7 +7,7 @@ import Gvote.ScrutinCST
 import scala.util.control.Breaks
 import Gvote.Eligible
 import Gvote.Candidat
-import GUIComponent.GUIComponentCST
+import GUIAbstractComponent.GUIComponentCST
 
 class  SystemeDecomptageCondorcet(_nom : String, _electionCondorcet : ElectionCondorcet) extends SystemGeneralDecomptage(_nom){
         type ImplElection = ElectionCondorcet
@@ -51,6 +51,20 @@ class  SystemeDecomptageCondorcet(_nom : String, _electionCondorcet : ElectionCo
             election.ouvertureVote()
             initCurrentListCandidat()
             election.getTour(tourCourant).lancerTour()
+        }
+        
+        protected def ajouterVoteByGUIElecteur(electeur : ElecteurCondorcet, candidats : List[(Int,Eligible)]*):Boolean = {
+        	
+            var candidatListFinal : List[Eligible] = List()
+        	
+        	for(candidat <- candidats.apply(0)){
+        	    	candidatListFinal = candidatListFinal :+ candidat._2
+        	 }
+        	candidatListFinal match{	  
+        		case candidatListC : List[Candidat] =>
+        			return electeur.voter(this, candidatListC)
+        		case _ => return false
+        	}
         }
         
         def ajouterVote(vote : VoteCondorcet) : Boolean = {

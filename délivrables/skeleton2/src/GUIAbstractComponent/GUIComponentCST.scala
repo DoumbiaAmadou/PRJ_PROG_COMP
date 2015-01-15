@@ -1,4 +1,4 @@
-package GUIComponent
+package GUIAbstractComponent
 
 object GUIComponentCST {
   
@@ -7,5 +7,6 @@ object GUIComponentCST {
 	val checkbox : String = "checkbox"
 	val listeDeroulante : String = "listeDeroulante"
 	val radio : String = "radio"
+	val undefined : String = "undefined"
 	
 }

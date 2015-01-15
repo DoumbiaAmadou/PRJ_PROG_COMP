@@ -15,15 +15,16 @@ import Gvote.SystemGeneralDecomptage
 import Gvote.Eligible
 import Gvote.Candidat
 import Gvote.Candidat
+import GUIAbstractComponent.GUIComponentCST
 
 final class SystemDeComptageProportionel(_nom : String, electionProp : ElectionProportionnel) extends SystemGeneralDecomptage(_nom) {
-	type ImplElecteur = Electeur;
+	type ImplElecteur = ElecteurProportionnel;
 	type returnList = AbstractSeq[_];
-  type Candidate = Parti;
-  type ImplElection = ElectionProportionnel
-  type ImplVote = VoteProportionnel;
+	type Candidate = Parti;
+  	type ImplElection = ElectionProportionnel
+	type ImplVote = VoteProportionnel;
 
-  var GUIType = "";
+  	var GUIType = GUIComponentCST.radio;
 	var currentListCandidat : List[Parti] = List();
 	var tabCandidatVote : List[(Parti,BigDecimal)] = List(); //Same Uninomial
 	var numberOfVote : BigDecimal = 0;
@@ -61,6 +62,17 @@ final class SystemDeComptageProportionel(_nom : String, electionProp : ElectionP
 		election.tourList.apply(tourCourant).lancerTour();
 	}
 
+	protected def ajouterVoteByGUIElecteur(electeur : ElecteurProportionnel, candidats : List[(Int,Eligible)]*):Boolean = {
+    	candidats.apply(0) match{
+    	  	case candidat : List[(Int,Parti)] =>
+    	  		if(candidat.length == 1){
+    	  			 return electeur.voter(this, candidat.apply(0)._2)
+    	  		}
+    	}
+    	
+    	return false
+    }
+	
 	def ajouterVote(vote : VoteProportionnel) : Boolean = {
     type ImplVote = VoteProportionnel;
 			numberOfVote += 1.0;

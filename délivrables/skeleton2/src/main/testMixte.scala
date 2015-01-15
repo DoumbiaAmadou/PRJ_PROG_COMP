@@ -5,8 +5,14 @@ import implementationProportionnel._
 import implementationVoteSimple._
 import Factory._
 import implementationMixte._
+import GUI.GUI_IHMSwing
 
 object testMixte {
+  
+	def runVote(electeur : ElecteurMixte,systeme : SystemeDecomptageMixte){
+		GUI_IHMSwing.runVote(List((electeur.elecPro ,systeme.proportionnel), (electeur.elecUni,systeme.uninominal)))
+	}
+  
 	def main(args: Array[String]): Unit = {
 			var  systeme : SystemeDecomptageMixte = FactoryMixte.createCoutingSystem;
       systeme.proportionnel.numberOfSeat = 250;
@@ -108,14 +114,21 @@ object testMixte {
   
     println("Vote");
 
-    
-  elec1.voter(systeme,(partiA,candidatU1));
+    runVote(elec1,systeme)
+    runVote(elec2,systeme)
+    runVote(elec3,systeme)
+    runVote(elec4,systeme)
+    runVote(elec5,systeme)
+    runVote(elec6,systeme)
+    runVote(elec7,systeme)
+  
+ /* elec1.voter(systeme,(partiA,candidatU1));
   elec2.voter(systeme,(partiA,candidatU1));
   elec3.voter(systeme,(partiB,candidatU2));
   elec4.voter(systeme,(partiA,candidatU3));
   elec5.voter(systeme,(partiA,candidatU1));
   elec6.voter(systeme,(partiB,candidatU2));
-  elec7.voter(systeme,(partiD,candidatU4));
+  elec7.voter(systeme,(partiD,candidatU4));*/
   
   
   
@@ -124,7 +137,7 @@ object testMixte {
   var listgagnant : List[(Parti,Int)] = systeme.getGagnants();
   println("list gagan "+listgagnant.length )
   for(gagnant <- listgagnant){
-    println(" Parti "+gagnant._1.nom+" a gagnŽ  "+gagnant._2+" siges");
+    println(" Parti "+gagnant._1.nom+" a gagne  "+gagnant._2+" sieges");
   }
     
   

@@ -1,6 +1,6 @@
 package implementationPlurinominale
 import Gvote._
-import GUIComponent.GUIComponentCST
+import GUIAbstractComponent.GUIComponentCST
 
 
 
@@ -43,6 +43,21 @@ class SystemeDecomptagePlurinomial(_nom : String ,_election : ElectionPlurinomin
             election.ouvertureVote()
             initCurrentListCandidat()
             election.getTour(tourCourant).lancerTour()
+        }
+        
+        protected def ajouterVoteByGUIElecteur(electeur : Electeur, candidats : List[(Int,Eligible)]*):Boolean = {
+        	
+            var candidatList : List[Eligible] = List()
+        	
+            for(candidat <- candidats.apply(0)){
+        		candidatList = candidatList :+ candidat._2
+        	}
+        	
+            candidatList match{	  
+        		case candidatListC : List[Candidat] =>
+        			return electeur.voter(this, candidatListC)
+        		case _ => return false
+        	}
         }
         
         def ajouterVote(vote : ImplVote ) : Boolean = {
