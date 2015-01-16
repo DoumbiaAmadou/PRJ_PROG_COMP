@@ -27,12 +27,13 @@ final class SystemDeComptageProportionel(_nom : String, electionProp : ElectionP
   	var GUIType = GUIComponentCST.radio;
 	var tabCandidatVote : List[(Parti,BigDecimal)] = List(); //Same Uninomial
 	var numberOfVote : BigDecimal = 0;
+	override protected val election : ElectionProportionnel = electionProp;
 	var numberOfSeat : BigDecimal =  election.modeScrutin.listGagnantParTour.apply(0)
+	
 	var electoralQuot : BigDecimal = 0;
 	var listSortByQuot : MutableList[(Parti,BigDecimal,BigDecimal,BigDecimal)] = MutableList();
 	var listSortByRemind : MutableList[(Parti,BigDecimal,BigDecimal,BigDecimal)] = MutableList();
 	var listWinners : MutableList[(Parti,BigDecimal,BigDecimal,List[Candidat])] = MutableList();
-	override protected val election : ElectionProportionnel = electionProp;
 	tourCourant = 0;
 
 
@@ -141,7 +142,7 @@ final class SystemDeComptageProportionel(_nom : String, electionProp : ElectionP
 	var exList = listWinners .sortBy(x => x._3).reverse;
 	var win : MutableList[(Candidat,BigDecimal)] = MutableList();
 	loop.breakable{
-		for(i  <- 0 to exList.length ){
+		for(i  <- 0 to exList.length-1){
 			seat = exList.apply(i)._2 + 1; 
 			numberOfSeat -= 1;
 			exList.update(i,(exList.apply(i)._1,seat,exList.apply(i)._3,exList.apply(i)._1.listCandidat.take(seat.intValue())))

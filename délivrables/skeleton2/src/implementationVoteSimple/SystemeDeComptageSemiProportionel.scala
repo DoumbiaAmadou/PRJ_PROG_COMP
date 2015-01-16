@@ -127,7 +127,7 @@ class SystemeDeComptageSemiProportionel(_nom : String, election : Election)  ext
 	def getGagnants(): scala.collection.mutable.MutableList[Candidat] = {
 		//val numberOfSeat = ScrutinCST.paramSemiProportionnel.listGagnantParTour.apply(0);
 		//println("number of seat "+numberOfSeat)
-		return tabCandidatVoteWithoutVote.takeRight(election.modeScrutin.listGagnantParTour(tourCourant));
+		return tabCandidatVoteWithoutVote.takeRight(election.modeScrutin.listGagnantParTour(0));
 	}
 
 

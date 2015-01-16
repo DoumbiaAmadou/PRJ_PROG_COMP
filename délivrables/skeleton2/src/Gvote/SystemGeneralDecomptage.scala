@@ -34,8 +34,8 @@ abstract class SystemGeneralDecomptage(_nom : String) {
     def runTour():Unit
     protected def getGagnantsTour(i : Int): returnList
     def getGagnants(): returnList
-  	def getGUIType = GUIType
- 	def verifVote(secretCode: Int , nbTour  : Int): Boolean ={
-    		return  election.tourList.apply(nbTour).contains(secretCode); 
-	}
+	def getGUIType = GUIType
+	def verifVote(secretCode: Int , nbTour : Int): Boolean ={
+    	return election.tourList.apply(nbTour).contains(secretCode);
+    }
 }

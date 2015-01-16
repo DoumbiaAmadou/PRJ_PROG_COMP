@@ -33,11 +33,11 @@ abstract class AbstractTour(_election : AbstractElection) {
 	def getNbVoteTotal() : Int = {
 	  return voteList.length
 	}
-	def contains(id : Int) : Boolean ={  
 	
-	  for(vote <- voteList ){
-	    if(vote.electeur.id == id )return true 
-	  }
-	  return false ; 
+	def contains(id : Int) : Boolean ={
+		for(vote <- voteList ){
+			if(vote.electeur.id == id )return true
+		}
+		return false ;
 	}
 }

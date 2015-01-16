@@ -11,9 +11,9 @@ object FactoryUninominal extends FactoryCoutingSystem {
 	def generateSystem(modeScrutin : ModeScrutin) : SystemeDecomptageUninominal =
 	    new SystemeDecomptageUninominal("Election uninominal", new Election(modeScrutin))
 	
-	def createCountingSystem(nbTour : Int, nbGagnantParTour : List[Int], visibilite : String) : SystemeDecomptageUninominal ={
-	  assert(nbTour == nbGagnantParTour.size)   
-	 return  generateSystem(ScrutinCST.paramUninominal(nbTour, nbGagnantParTour.sortWith(_ >_), visibilite)) ; 
+	def createCountingSystem(nbTour : Int, nbGagnantParTour : List[Int], visibilite : String) : SystemeDecomptageUninominal = {
+	    assert(nbTour == nbGagnantParTour.size) 
+		return generateSystem(ScrutinCST.paramUninominal(nbTour, nbGagnantParTour.sortWith(_>_), visibilite))
 	}
 	
 }

@@ -1,0 +1,5 @@
+package doodle
+
+class DialogSemi {
+
+}

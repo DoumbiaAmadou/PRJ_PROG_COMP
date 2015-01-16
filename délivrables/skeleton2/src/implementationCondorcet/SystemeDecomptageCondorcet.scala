@@ -54,16 +54,28 @@ class  SystemeDecomptageCondorcet(_nom : String, _electionCondorcet : ElectionCo
         
         protected def ajouterVoteByGUIElecteur(electeur : ElecteurCondorcet, candidats : List[(Int,Eligible)]*):Boolean = {
         	
-            var candidatListFinal : List[Eligible] = List()
+            var candidatListFinal : List[Candidat] = List()
         	
-        	for(candidat <- candidats.apply(0)){
-        	    	candidatListFinal = candidatListFinal :+ candidat._2
-        	 }
-        	candidatListFinal match{	  
-        		case candidatListC : List[Candidat] =>
-        			return electeur.voter(this, candidatListC)
-        		case _ => return false
-        	}
+        	candidats.apply(0) match{
+            	case candidatList : List[(Int,Candidat)] => candidatListFinal = getListCandidatVote(candidatList)
+            	case _ => return false
+            }
+        	 return electeur.voter(this, candidatListFinal)
+        }
+        
+        private def getListCandidatVote(candidats : List[(Int,Candidat)]) : List[Candidat] = {
+            var cpt : Int = 0
+            
+            var listCandidat : List[Candidat] = List()
+            
+            for(cpt <- 0 to candidats.length-1)
+            	for(candidat <- candidats)
+            		if(candidat._1 == cpt){
+            			listCandidat = listCandidat :+ candidat._2    
+
+            		}
+            		
+            return listCandidat
         }
         
         def ajouterVote(vote : VoteCondorcet) : Boolean = {
