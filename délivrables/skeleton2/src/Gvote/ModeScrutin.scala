@@ -6,7 +6,7 @@ class ModeScrutin (_typeScrutin : String , _nbTour  : Int, _listGagnantParTour  
 	val listGagnantParTour = _listGagnantParTour
 	val visibiliteVote = _visibiliteVote
 	
-	def getNbGagnant(numeroTour : Int) : Int = {
+	/*def getNbGagnant(numeroTour : Int) : Int = {
 	    getNthElement(numeroTour, listGagnantParTour)
 	}
 	
@@ -15,5 +15,5 @@ class ModeScrutin (_typeScrutin : String , _nbTour  : Int, _listGagnantParTour  
 	      case List(a) => if(n==0) a else 0
 	      case a::tail => if(n==0) a else getNthElement(n-1, tail)
 	    }
-	}
+	}*/
 }

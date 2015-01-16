@@ -4,9 +4,14 @@ import Gvote.FactoryCoutingSystem
 import Gvote.ScrutinCST
 import implementationVoteSimple.Election
 import implementationVoteSimple.SystemeDeComptageSemiProportionel
+import Gvote.ModeScrutin
 
 object FactorySemiProportionnel extends FactoryCoutingSystem {
-	var numberOfSeat : Int = 0;
-	def createCoutingSystem = new SystemeDeComptageSemiProportionel("Election semi proportionnel",new Election(ScrutinCST.paramSemiProportionnel(numberOfSeat)));
-
+	
+	def generateSystem(modeScrutin : ModeScrutin) : SystemeDeComptageSemiProportionel =
+	    new SystemeDeComptageSemiProportionel("Election semi proportionnel",new Election(modeScrutin))
+	
+	def createCountingSystem(nbGagnant : Int, visibilite : String) : SystemeDeComptageSemiProportionel =
+	    generateSystem(ScrutinCST.paramSemiProportionnel(nbGagnant, visibilite))
+	
 }

@@ -11,7 +11,6 @@ class SystemeDeComptageSemiProportionel(_nom : String, election : Election)  ext
 	var tabCandidatVoteWithoutVote : scala.collection.mutable.MutableList[Candidat] 
 	= scala.collection.mutable.MutableList();
 	var tabCandidatVote : List[(Candidat,Int)] = List(); //Same Uninomial
-	var currentListCandidat : List[Candidat] = List();
 	//override protected val election = _election;
 	
 
@@ -44,7 +43,6 @@ class SystemeDeComptageSemiProportionel(_nom : String, election : Election)  ext
 		  return false;
 		for(candidat <- currentListCandidat){
 			cpt = tour.getNbVote(candidat);
-			//println("cpt : "+cpt);
 			tabCandidatVote = tabCandidatVote:+(candidat,cpt);
 			
 		}
@@ -119,7 +117,7 @@ class SystemeDeComptageSemiProportionel(_nom : String, election : Election)  ext
 	
 	def getGagnantsTour(i : Int): scala.collection.mutable.MutableList[Candidat]= {
 	  comptabiliser(tourCourant);
-	  var sortListCandidat = tabCandidatVote.sortBy(x => x._2); //Liste triée en fonction du nombre de vote
+	  var sortListCandidat = tabCandidatVote.sortBy(x => x._2); //Liste triee en fonction du nombre de vote
 	 
 	  tabCandidatVoteWithoutVote = removeVote(sortListCandidat);
 	  //println(tabCandidatVoteWithoutVote)
@@ -129,7 +127,7 @@ class SystemeDeComptageSemiProportionel(_nom : String, election : Election)  ext
 	def getGagnants(): scala.collection.mutable.MutableList[Candidat] = {
 		//val numberOfSeat = ScrutinCST.paramSemiProportionnel.listGagnantParTour.apply(0);
 		//println("number of seat "+numberOfSeat)
-		return tabCandidatVoteWithoutVote.takeRight(FactorySemiProportionnel.numberOfSeat);
+		return tabCandidatVoteWithoutVote.takeRight(election.modeScrutin.listGagnantParTour(tourCourant));
 	}
 
 

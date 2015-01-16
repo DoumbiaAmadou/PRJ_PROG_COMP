@@ -11,6 +11,6 @@ class Election(_modeScrutin : ModeScrutin) extends AbstractElection(_modeScrutin
 	def this(modeScrutin : String, nbTour : Int, listGagnantParTour : List[Int]  ,visibiliteVote : String ){
 		this(new  ModeScrutin(modeScrutin, nbTour, listGagnantParTour,visibiliteVote));
 	}
-	
+		
 }
 

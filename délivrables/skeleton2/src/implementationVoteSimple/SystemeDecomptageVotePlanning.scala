@@ -7,7 +7,7 @@ import scala.actors.remote.Apply0
 class SystemeDecomptageVotePlanning(_nom : String, election : Election , nbvotantParPlanning : Int) 
 	extends SystemeDecomptageUninominal(_nom : String, election : Election){
 	type ImplTour = Tour
-	nbvotant  = nbvotantParPlanning
+	var nbvotant  = nbvotantParPlanning
 	
 	
 	override def ajouterVote(vote : Vote) : Boolean = {

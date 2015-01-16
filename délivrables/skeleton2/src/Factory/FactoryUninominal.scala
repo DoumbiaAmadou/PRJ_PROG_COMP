@@ -4,7 +4,14 @@ import Gvote.FactoryCoutingSystem
 import Gvote.ScrutinCST
 import implementationVoteSimple.Election
 import implementationVoteSimple.SystemeDecomptageUninominal
+import Gvote.ModeScrutin
 
 object FactoryUninominal extends FactoryCoutingSystem {
-	def createCoutingSystem = new SystemeDecomptageUninominal("Election uninominal", new Election(ScrutinCST.paramUninominal));
+	
+	def generateSystem(modeScrutin : ModeScrutin) : SystemeDecomptageUninominal =
+	    new SystemeDecomptageUninominal("Election uninominal", new Election(modeScrutin))
+	
+	def createCountingSystem(nbTour : Int, nbGagnantParTour : List[Int], visibilite : String) : SystemeDecomptageUninominal =
+	    generateSystem(ScrutinCST.paramUninominal(nbTour, nbGagnantParTour, visibilite))
+	
 }

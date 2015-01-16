@@ -2,6 +2,6 @@ package Gvote
 
 abstract class FactoryCoutingSystem {
   
-	def createCoutingSystem : SystemGeneralDecomptage;
+	def generateSystem(modeScrutin : ModeScrutin) : SystemGeneralDecomptage;
 
 }

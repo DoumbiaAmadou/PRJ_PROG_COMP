@@ -12,13 +12,14 @@ abstract class SystemGeneralDecomptage(_nom : String) {
 	val nom : String = _nom
 	protected val election : ImplElection
 	protected var tourCourant : Int = 0
+	protected var currentListCandidat : List[Candidate] = List();
 	var terminer : Boolean = false; //Same in Uninomial
 	protected var GUIType : String
 	
     def initElection():Unit
     def ajouterCandidat(candidat : Eligible):Boolean
     protected def cloturerCandidature:Unit
-    def getCandidats() : List[Eligible] = election.listCandidat
+    def getCandidats() : List[Candidate] = currentListCandidat
     def ajouterVote(vote : ImplVote):Boolean
     def ajouterVoteByGUIAbsElecteur(electeur : AbstractElecteur, candidat : List[(Int,Eligible)]):Boolean = {
 	  electeur match{

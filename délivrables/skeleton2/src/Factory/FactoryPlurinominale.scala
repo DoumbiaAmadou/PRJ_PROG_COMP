@@ -8,7 +8,9 @@ import implementationPlurinominale._
 
 object FactoryPlurinominal extends FactoryCoutingSystem {
 
-  def createCoutingSystem() = null
-  def createCoutingSystem(nbTour : Int , listgagnantTour : List[Int]) = 
-	  new SystemeDecomptagePlurinomial("Election Plurinominale", new ElectionPlurinominale(ScrutinCST.paramPlurinominale(nbTour,listgagnantTour)));
+	def generateSystem(modeScrutin : ModeScrutin) : SystemeDecomptagePlurinomial =
+		new SystemeDecomptagePlurinomial("Election Plurinominale",new ElectionPlurinominale(modeScrutin))
+  
+	def createCountingSystem(nbTour : Int , listgagnantTour : List[Int]) : SystemeDecomptagePlurinomial =  
+	    generateSystem(ScrutinCST.paramPlurinominale(nbTour,listgagnantTour));
 }

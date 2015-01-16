@@ -25,10 +25,9 @@ final class SystemDeComptageProportionel(_nom : String, electionProp : ElectionP
 	type ImplVote = VoteProportionnel;
 
   	var GUIType = GUIComponentCST.radio;
-	var currentListCandidat : List[Parti] = List();
 	var tabCandidatVote : List[(Parti,BigDecimal)] = List(); //Same Uninomial
 	var numberOfVote : BigDecimal = 0;
-	var numberOfSeat : BigDecimal = FactoryProportionnel.numberOfSeat;
+	var numberOfSeat : BigDecimal =  election.modeScrutin.listGagnantParTour.apply(0)
 	var electoralQuot : BigDecimal = 0;
 	var listSortByQuot : MutableList[(Parti,BigDecimal,BigDecimal,BigDecimal)] = MutableList();
 	var listSortByRemind : MutableList[(Parti,BigDecimal,BigDecimal,BigDecimal)] = MutableList();
@@ -162,11 +161,5 @@ final class SystemDeComptageProportionel(_nom : String, electionProp : ElectionP
   }
 	return listOfWinner;
 	}
-
-
-
-
-
-
 
 }

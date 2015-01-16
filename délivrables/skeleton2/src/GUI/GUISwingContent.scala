@@ -114,8 +114,8 @@ abstract class GUISwingContent(_listeChoix : List[(String,Eligible)]) extends JP
 	            if(i%2==0){
 	            	var component : Component = getComponent(i);
 	        		component match {
-	        			case comboBox : JComboBox[String] =>
-	        					mesChoix = mesChoix :+ (component.toString().toInt, listeChoix.apply(j)._2)
+	        			case comboBox : JComboBox[String] => //println(comboBox.getSelectedItem().)
+	        					mesChoix = mesChoix :+ (comboBox.getSelectedItem().toString().toInt, listeChoix.apply(j)._2)
 	        					j +=1
 	        		}
 	            }		

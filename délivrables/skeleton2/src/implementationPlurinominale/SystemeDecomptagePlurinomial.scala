@@ -15,8 +15,7 @@ class SystemeDecomptagePlurinomial(_nom : String ,_election : ElectionPlurinomin
 	type Candidate = Candidat
 	override val nom : String = _nom
       
-	var GUIType = GUIComponentCST.listeDeroulante
-    protected var currentListCandidat : List[Candidat] = List()
+	var GUIType = GUIComponentCST.checkbox
     protected var tabCandidatVote : List[(Candidat,Int)] = List()
 		
 		// a mettre en cas de soucis
@@ -156,6 +155,6 @@ class SystemeDecomptagePlurinomial(_nom : String ,_election : ElectionPlurinomin
     	}
      
    override    def getGagnants():List[Candidat] = {
-            return currentListCandidat  // currentListCandidat 
+            return currentListCandidat 
    }
 }

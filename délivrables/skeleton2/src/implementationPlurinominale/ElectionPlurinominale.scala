@@ -20,6 +20,7 @@ class ElectionPlurinominale(_modeScrutin : ModeScrutin ) extends AbstractElectio
 	// on peut acceder directement a la list avec des index 
 	  return  list.apply(n);
 	}
+	
 	def addSysdecompte(sys : SystemeDecomptagePlurinomial ) : Boolean= {
 	  if( systemeDecompt  == null) 
 	  { 

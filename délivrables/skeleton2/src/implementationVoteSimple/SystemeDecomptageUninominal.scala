@@ -8,7 +8,6 @@ class  SystemeDecomptageUninominal(_nom : String, election : Election) extends S
         type returnList = List[Candidat]
  
 		//override protected val election : Election = _election
-		protected var currentListCandidat : List[Candidat] = List()
         //liste des candidats (non elimines), a chaque tour, associes a leur nombre de vote
 		var listdeslistedeCandidat:List[List[(Candidat,Int)]] = List()
         var tabCandidatVote : List[(Candidat,Int)] = List()
@@ -144,7 +143,7 @@ class  SystemeDecomptageUninominal(_nom : String, election : Election) extends S
 	    	var gagnants : List[Candidat] = List()
 	    	
 	    	var pos : Int = 0
-	    	var nbCandidat : Int = election.modeScrutin.getNbGagnant(numeroTour)
+	    	var nbCandidat : Int = election.modeScrutin.listGagnantParTour(numeroTour)
 
 	    	while(gagnants.length<nbCandidat && gagnants.length != currentListCandidat.length){
 	    		gagnants = gagnants++getCandidatAtPos(pos,numeroTour)

@@ -39,7 +39,7 @@ class GUIGeneratorSwing extends GUIAbstractGeneratorToolkit {
 	            }
 	          
 	            case GUIComponentCST.listeDeroulante =>{
-	                panel = new RadioContent(content.listChoix)
+	                panel = new ListeDeroulanteContent(content.listChoix)
 	            }
 	          
 	        }
